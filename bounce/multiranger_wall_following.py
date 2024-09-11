@@ -109,10 +109,10 @@ if __name__ == '__main__':
 
                     
                         # get velocity commands and current state from wall following state machine
-                        velocity_x, velocity_y, yaw_rate, state_wf = wall_following.wall_follower(
-                            front_range, left_range, right_range, back_range, actual_yaw_rad, time.time())
+                        velocity_x, yaw_rate, state_wf = wall_following.wall_follower(
+                            front_range, left_range, right_range, back_range, time.time())
 
-                        print('velocity_x', velocity_x, 'velocity_y', velocity_y,
+                        print('velocity_x', velocity_x, 
                               'yaw_rate', yaw_rate, 'state_wf', state_wf)
 
                         # convert yaw_rate from rad to deg
@@ -121,7 +121,7 @@ if __name__ == '__main__':
                         yaw_rate_deg = -1 * degrees(yaw_rate)
 
                         motion_commander.start_linear_motion(
-                            velocity_x, velocity_y, 0, rate_yaw=yaw_rate_deg)
+                            velocity_x, 0, 0, rate_yaw=yaw_rate_deg)
 
                         # if top_range is activated, stop the demo
                         if top_range < 0.2:
